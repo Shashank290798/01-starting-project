@@ -44,8 +44,16 @@ function App() {
           </div>
           {EXAMPLES[selectedTopic] && (
             <div id="tab-content1">
-              <pre>
-                <code>{EXAMPLES[selectedTopic].code}</code>
+              <pre style={{ // Inline CSS for code block container
+                padding: "1rem",
+                borderRadius: "6px",
+                backgroundColor: "#140524",
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.3)"
+              }}>
+                <code style={{ // Inline CSS for code element
+                  fontSize: "1rem",
+                  color: "#ebe7ef"
+                }}>{EXAMPLES[selectedTopic].code}</code>
               </pre>
             </div>
           )}
