@@ -1,15 +1,16 @@
+import React, { useState } from "react";
 import Header from "./components/Header/Header";
 import CoreConcept from "./components/CoreConcept/CoreConcept";
 import TabButton from "./components/TabButton";
-import { CORE_CONCEPTS } from "./data";
+import { CORE_CONCEPTS, EXAMPLES } from "./data";
 
 function App() {
+  const [selectedTopic, setSelectedTopic] = useState("components");
 
-  let tabButton = "Please Select button"
   function handleSelect(selectedButton) {
-    tabButton = selectedButton
-    console.log(tabButton);
+    setSelectedTopic(selectedButton);
   }
+
   return (
     <div>
       <Header />
@@ -31,10 +32,20 @@ function App() {
             <TabButton onSelect={() => handleSelect("props")}> Props </TabButton>
             <TabButton onSelect={() => handleSelect("state")}> State </TabButton>
           </menu>
-          {tabButton}
+          <div id="tab-content">
+            {EXAMPLES[selectedTopic] ? (
+              <>
+                <h3>{EXAMPLES[selectedTopic].title}</h3>
+                <p>{EXAMPLES[selectedTopic].description}</p>
+              </>
+            ) : (
+              <p>No examples found for the selected topic.</p>
+            )}
+          </div>
+          <div id="tab-content1"> <pre><code>{EXAMPLES[selectedTopic].code}</code></pre></div>
         </section>
       </main>
-    </div> 
+    </div>
   );
 }
 
