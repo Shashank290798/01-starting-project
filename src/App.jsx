@@ -18,19 +18,19 @@ function App() {
         <section id="core-concepts">
           <h2>Core Concepts</h2>
           <ul>
-            <CoreConcept {...CORE_CONCEPTS[0]} />
-            <CoreConcept {...CORE_CONCEPTS[1]} />
-            <CoreConcept {...CORE_CONCEPTS[2]} />
-            <CoreConcept {...CORE_CONCEPTS[3]} />
+            {CORE_CONCEPTS.map(concept => (
+              <CoreConcept key={concept.id} {...concept} />
+            ))}
           </ul>
         </section>
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton onSelect={() => handleSelect("components")}> Components </TabButton>
-            <TabButton onSelect={() => handleSelect("jsx")}> JSX </TabButton>
-            <TabButton onSelect={() => handleSelect("props")}> Props </TabButton>
-            <TabButton onSelect={() => handleSelect("state")}> State </TabButton>
+            {Object.keys(EXAMPLES).map(topic => (
+              <TabButton key={topic} onSelect={() => handleSelect(topic)}>
+                {topic.charAt(0).toUpperCase() + topic.slice(1)}
+              </TabButton>
+            ))}
           </menu>
           <div id="tab-content">
             {EXAMPLES[selectedTopic] ? (
@@ -42,7 +42,13 @@ function App() {
               <p>No examples found for the selected topic.</p>
             )}
           </div>
-          <div id="tab-content1"> <pre><code>{EXAMPLES[selectedTopic].code}</code></pre></div>
+          {EXAMPLES[selectedTopic] && (
+            <div id="tab-content1">
+              <pre>
+                <code>{EXAMPLES[selectedTopic].code}</code>
+              </pre>
+            </div>
+          )}
         </section>
       </main>
     </div>
