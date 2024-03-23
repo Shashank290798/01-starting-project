@@ -1,6 +1,5 @@
 import reactImg from "../../assets/react-core-concepts.png";
-import "./Header.css"
-
+import "./Header.css";
 
 const reactDescription = ["Fundamental", "Core", "Crucial"];
 
