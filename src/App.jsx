@@ -19,18 +19,21 @@ function App() {
           <h2>Core Concepts</h2>
           <ul>
             {CORE_CONCEPTS.map(concept => (
-              <CoreConcept key={concept.id} {...concept} />
+              <CoreConcept key={concept.title} {...concept} />
             ))}
           </ul>
         </section>
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            {Object.keys(EXAMPLES).map(topic => (
-              <TabButton key={topic} onSelect={() => handleSelect(topic)}>
-                {topic.charAt(0).toUpperCase() + topic.slice(1)}
+          <TabButton  isSelected={selectedTopic === 'components'} onSelect={() => handleSelect('components')}>Components
               </TabButton>
-            ))}
+              <TabButton  isSelected={selectedTopic === 'jsx'}  onSelect={() => handleSelect('jsx')}>JSX
+              </TabButton>
+              <TabButton  isSelected={selectedTopic === 'props'}  onSelect={() => handleSelect('props')}>Props
+              </TabButton>
+              <TabButton  isSelected={selectedTopic === 'state'} onSelect={() => handleSelect('state')}>State
+              </TabButton>
           </menu>
           <div id="tab-content">
             {EXAMPLES[selectedTopic] ? (
