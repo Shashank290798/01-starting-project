@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TabButton from "./TabButton";
+import Tabs from "./Tabs";
 import Section from "../Section";
 import { EXAMPLES } from "../../data";
 
@@ -10,33 +11,37 @@ export default function Example() {
     setSelectedTopic(selectedButton);
   }
   return (
-    <Section title= "Examples" id="examples">
-      <menu>
-        <TabButton
-          isSelected={selectedTopic === "components"}
-          onClick={() => handleSelect("components")}
-        >
-          Components
-        </TabButton>
-        <TabButton
-          isSelected={selectedTopic === "jsx"}
-          onClick={() => handleSelect("jsx")}
-        >
-          JSX
-        </TabButton>
-        <TabButton
-          isSelected={selectedTopic === "props"}
-          onClick={() => handleSelect("props")}
-        >
-          Props
-        </TabButton>
-        <TabButton
-          isSelected={selectedTopic === "state"}
-          onClick={() => handleSelect("state")}
-        >
-          State
-        </TabButton>
-      </menu>
+    <Section title="Examples" id="examples">
+      <Tabs
+        buttons={
+          <>
+            <TabButton
+              isSelected={selectedTopic === "components"}
+              onClick={() => handleSelect("components")}
+            >
+              Components
+            </TabButton>
+            <TabButton
+              isSelected={selectedTopic === "jsx"}
+              onClick={() => handleSelect("jsx")}
+            >
+              JSX
+            </TabButton>
+            <TabButton
+              isSelected={selectedTopic === "props"}
+              onClick={() => handleSelect("props")}
+            >
+              Props
+            </TabButton>
+            <TabButton
+              isSelected={selectedTopic === "state"}
+              onClick={() => handleSelect("state")}
+            >
+              State
+            </TabButton>
+          </>
+        }
+      />
       <div id="tab-content">
         {EXAMPLES[selectedTopic] ? (
           <>
@@ -51,7 +56,6 @@ export default function Example() {
         <div id="tab-content1">
           <pre
             style={{
-              // Inline CSS for code block container
               padding: "1rem",
               borderRadius: "6px",
               backgroundColor: "#140524",
@@ -60,7 +64,6 @@ export default function Example() {
           >
             <code
               style={{
-                // Inline CSS for code element
                 fontSize: "1rem",
                 color: "#ebe7ef",
               }}
